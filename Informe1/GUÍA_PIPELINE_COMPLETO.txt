@@ -1,0 +1,487 @@
+"""
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║          GUÍA DE USO - PIPELINE COMPLETO LECCIONES 2, 3 Y 4                ║
+║                                                                              ║
+║   Integración de técnicas de exploración, transformación y modelado de      ║
+║   datos aplicadas al dataset de películas desde Kaggle Hub                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+TABLA DE CONTENIDOS
+├── 1. Descripción General
+├── 2. Estructura del Pipeline
+├── 3. Cómo Ejecutar
+├── 4. Comparativa de Técnicas por Lección
+├── 5. Ejemplos de Uso
+├── 6. Salida Esperada
+└── 7. Troubleshooting
+
+═══════════════════════════════════════════════════════════════════════════════
+
+1. DESCRIPCIÓN GENERAL
+───────────────────────────────────────────────────────────────────────────────
+
+El pipeline completo realiza un análisis integral de datos (ML - EDA - Transformaciones)
+en 8 fases principales:
+
+  FASE 1: Carga de Datos
+  ↓
+  FASE 2: Pre-procesamiento y Limpieza (Outliers)
+  ↓
+  FASE 3: Exploración Gráfica (Histogramas, Dispersión)
+  ↓
+  FASE 4: Ingeniería de Características
+  ↓
+  FASE 5: Transformaciones Numéricas (Scaling, Encoding)
+  ↓
+  FASE 6: Análisis de Correlación
+  ↓
+  FASE 7: Entrenamiento y Evaluación de Modelos
+  ↓
+  FASE 8: Generación de Reportes y Visualizaciones
+
+═══════════════════════════════════════════════════════════════════════════════
+
+2. ESTRUCTURA DEL PIPELINE
+───────────────────────────────────────────────────────────────────────────────
+
+📁 Lect4/
+├── movies_complete_pipeline.py    ← SCRIPT PRINCIPAL DEL PIPELINE
+├── lect4.py                        ← Análisis de exploración gráfica
+└── (outputs generados aquí)
+
+📁 Lect3/
+├── mercado_miguel_fintech_analysis.py
+└── (técnicas de análisis avanzado)
+
+📁 Lect2/
+├── mercado_miguel_iris_analysis.py
+└── (técnicas de machine learning)
+
+📁 outputs/
+├── pipeline_histogramas.png                 ← Gráficos de distribuciones
+├── pipeline_matriz_correlación.png          ← Heatmap de correlaciones
+├── pipeline_comparación_modelos.png         ← Performance de modelos
+├── pipeline_predicciones_vs_reales.png      ← Validación de predicciones
+├── pipeline_pca.png                         ← Reducción dimensional
+├── pipeline_reporte_completo.txt            ← Reporte detallado
+├── pipeline_resultados_modelos.csv          ← Tabla CSV de resultados
+└── best_model_movies.joblib                 ← Modelo entrenado
+
+═══════════════════════════════════════════════════════════════════════════════
+
+3. CÓMO EJECUTAR EL PIPELINE
+───────────────────────────────────────────────────────────────────────────────
+
+OPCIÓN A: Ejecución Directa
+────────────────────────────
+
+cd /Users/miguelmercado/Documents/7mo\ Semestre/FDAA/Lect4
+"/Users/miguelmercado/Documents/7mo Semestre/FDAA/path/to/venv/bin/python" \\
+movies_complete_pipeline.py
+
+
+OPCIÓN B: Usando Script de Conveniencia
+────────────────────────────────────────
+
+cd /Users/miguelmercado/Documents/7mo\ Semestre/FDAA
+sh run_pipeline.sh
+
+
+OPCIÓN C: Desde Jupyter Notebook
+─────────────────────────────────
+
+jupyter notebook
+# Luego crear celda con:
+
+import subprocess
+subprocess.run([
+    '/Users/miguelmercado/Documents/7mo Semestre/FDAA/path/to/venv/bin/python',
+    'Lect4/movies_complete_pipeline.py'
+])
+
+═══════════════════════════════════════════════════════════════════════════════
+
+4. COMPARATIVA DE TÉCNICAS POR LECCIÓN
+───────────────────────────────────────────────────────────────────────────────
+
+LECCIÓN 2: MACHINE LEARNING & FEATURE ENGINEERING
+═══════════════════════════════════════════════════════════════════════════════
+
+¿QUÉ SE HACE?
+─────────────
+✔ Feature Engineering    → Crear nuevas variables derivadas
+✔ Selección de Modelos   → Entrenar múltiples algoritmos
+✔ Validación Cruzada     → Evaluar consistencia (5-Fold CV)
+✔ Hiperparámetros        → Grid Search para optimizar
+✔ Evaluación             → Métricas: R², RMSE, MAE
+
+MODELOS ENTRENADOS (8)
+──────────────────────
+1. Linear Regression         → Modelo lineal baseline
+2. Ridge Regression          → Regularización L2
+3. Lasso Regression          → Regularización L1
+4. Decision Tree             → Árbol de decisión
+5. KNN Regressor             → K-vecinos más cercanos
+6. Random Forest             → Ensamble de árboles
+7. Gradient Boosting         → Boosting secuencial
+8. SVR                       → Support Vector Machine
+
+FEATURES ENGINEER ADOS
+──────────────────────
+• Ratios:          X1/X2
+• Sumas:           X1 + X2
+• Productos:       X1 × X2
+• Log Transform:   log(X1), log(X2)
+
+EJEMPLO DE SALIDA
+─────────────────
+Modelo                 CV R²      Test R²    RMSE
+Linear Regression      1.0000     1.0000     0.0000
+Ridge Regression       1.0000     1.0000     0.0020
+Decision Tree          1.0000     1.0000     0.0039
+Gradient Boosting      1.0000     1.0000     0.0040
+Random Forest          1.0000     1.0000     0.0060
+...
+
+
+LECCIÓN 3: ANÁLISIS AVANZADO DE DATOS
+═══════════════════════════════════════════════════════════════════════════════
+
+¿QUÉ SE HACE?
+─────────────
+✔ Correlación             → Matriz de correlaciones
+✔ Colinealidad            → Detectar features redundantes
+✔ Comparativas            → Ranking de modelos
+✔ Análisis de Tendencias  → Identificar patrones
+✔ Reportes Profesionales  → Documentación completa
+
+ANÁLISIS DE CORRELACIÓN
+───────────────────────
+┌─────────────────────────────────────┬────────────┐
+│ Correlación                         │ Valor      │
+├─────────────────────────────────────┼────────────┤
+│ RunTime ↔ RATING_plus_RunTime       │ 1.000 ✓✓✓  │
+│ RATING ↔ RATING_log                 │ 0.994 ✓✓✓  │
+│ RATING_plus_RunTime ↔ Prod          │ 0.946 ✓✓   │
+│ RunTime ↔ RATING_times_RunTime      │ 0.937 ✓✓   │
+│ RATING ↔ RunTime                    │ -0.387     │
+└─────────────────────────────────────┴────────────┘
+
+RECOMENDACIONES
+───────────────
+→ Eliminar features con |r| > 0.95 (colineales)
+→ Mantener features con -0.3 < r < 0.3 (independientes)
+→ Investigar features con |r| = 1.0 (dependencia perfecta)
+
+COMPARATIVA DE MODELOS
+──────────────────────┐
+R² Score │ ████████████████     │ Linear Regression
+         │ ████████████████     │ Ridge Regression
+         │ ████████████████     │ Decision Tree
+         │ ████████████████     │ Gradient Boosting
+         │ ████████████████     │ Random Forest
+         │ ████████████████     │ Lasso Regression
+         │ ████████████         │ KNN Regressor
+         │ ████████████         │ SVR
+         └───────────────────────┘
+
+
+LECCIÓN 4: EXPLORACIÓN GRÁFICA Y TRANSFORMACIONES
+═══════════════════════════════════════════════════════════════════════════════
+
+¿QUÉ SE HACE?
+─────────────
+✔ Estadísticas Descriptivas  → Media, mediana, moda
+✔ Análisis de Dispersión     → Std, varianza, CV
+✔ Medidas de Posición        → Cuartiles, percentiles
+✔ Detección de Outliers      → Método IQR
+✔ Histogramas                → Distribuciones de frecuencia
+✔ Transformaciones           → Encoding, scaling, log
+
+ESTADÍSTICAS DESCRIPTIVAS
+──────────────────────────
+
+MEDIDAS DE TENDENCIA CENTRAL
+┌──────────┬─────────┬────────┐
+│ Variable │ RATING  │ RunTime│
+├──────────┼─────────┼────────┤
+│ Media    │ 6.937   │ 65.318 │
+│ Mediana  │ 7.100   │ 60.000 │
+│ Moda     │ 7.200   │ 24.000 │
+└──────────┴─────────┴────────┘
+
+MEDIDAS DE DISPERSIÓN
+┌──────┬──────────┬───────────┐
+│ Var  │ RATING   │ RunTime   │
+├──────┼──────────┼───────────┤
+│ Std  │ 1.131    │ 34.469    │
+│ Var  │ 1.279    │ 1188.109  │
+│ CV   │ 16.30%   │ 52.77%    │
+│ Rng  │ 6.0      │ 180.0     │
+└──────┴──────────┴───────────┘
+
+MEDIDAS DE POSICIÓN
+┌──────┬────────┬────────┐
+│ Q    │ RATING │ RunTime│
+├──────┼────────┼────────┤
+│ Q1   │ 6.2    │ 35.0   │
+│ Q2   │ 7.1    │ 60.0   │
+│ Q3   │ 7.8    │ 94.0   │
+│ IQR  │ 1.6    │ 59.0   │
+└──────┴────────┴────────┘
+
+DETECCIÓN DE OUTLIERS
+──────────────────────
+RATING:   165 outliers detectados [3.80, 10.20]
+RunTime:  105 outliers detectados [-50.00, 182.00]
+TOTAL:    3473 filas eliminadas (34.7%)
+
+TRANSFORMACIONES APLICADAS
+──────────────────────────
+✓ One Hot Encoding        → Categorías → Features binarias
+✓ Label Encoding          → Categorías → Números
+✓ Min-Max Scaling         → Rango [0, 1]
+✓ StandardScaler          → Media 0, std 1
+✓ Logarítmica             → log(X) para reducir sesgo
+
+═══════════════════════════════════════════════════════════════════════════════
+
+5. EJEMPLOS DE USO
+───────────────────────────────────────────────────────────────────────────────
+
+EJEMPLO 1: Ejecutar y Revisar Reportes
+────────────────────────────────────────
+
+# 1. Ejecutar pipeline
+cd /Users/miguelmercado/Documents/7mo\ Semestre/FDAA/Lect4
+python movies_complete_pipeline.py
+
+# 2. Ver reporte completo
+cat ../outputs/pipeline_reporte_completo.txt
+
+# 3. Ver resultados de modelos en CSV
+cat ../outputs/pipeline_resultados_modelos.csv
+
+# 4. Ver gráficos (Mac)
+open ../outputs/pipeline_comparación_modelos.png
+
+
+EJEMPLO 2: Usar el Mejor Modelo Entrenado
+──────────────────────────────────────────
+
+import joblib
+import pandas as pd
+import numpy as np
+
+# Cargar el modelo
+best_model = joblib.load('outputs/best_model_movies.joblib')
+
+# Hacer predicciones sobre datos nuevos
+X_new = np.array([[0.5, 0.3, 0.2, -0.1, 0.4, 0.9, 0.6]])  # 7 features
+prediction = best_model.predict(X_new)
+print(f"Predicción: {prediction[0]}")
+
+
+EJEMPLO 3: Analizar Matriz de Correlación
+──────────────────────────────────────────
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Leer resultados
+results = pd.read_csv('outputs/pipeline_resultados_modelos.csv')
+
+# Visualizar
+plt.figure(figsize=(10, 5))
+sns.barplot(data=results, x='Modelo', y='Test R²')
+plt.xticks(rotation=45)
+plt.ylabel('R² Score')
+plt.title('Rendimiento de Modelos')
+plt.show()
+
+
+EJEMPLO 4: Línea Automática de Pre-procesamiento
+─────────────────────────────────────────────────
+
+# El pipeline realiza automáticamente:
+
+1. df_raw = pd.read_csv('movies.csv')           # Cargar
+2. df_clean = remove_outliers(df_raw)           # Limpiar outliers (IQR)
+3. df_features = engineer_features(df_clean)    # Features derivadas
+4. df_transformed = apply_transformations(df_features)  # Escalado/Encoding
+5. X_train, X_test, y_train, y_test = split(df_transformed)  # Dividir
+6. models = [LinearRegression(), Ridge(), ...]  # Entrenar múltiples
+7. best_model = select_best(models)             # Seleccionar mejor
+8. report = generate_report(best_model)         # Documentar
+
+═══════════════════════════════════════════════════════════════════════════════
+
+6. SALIDA ESPERADA
+───────────────────────────────────────────────────────────────────────────────
+
+CONSOLA (Terminal Output)
+──────────────────────────
+
+================================================================================
+PIPELINE COMPLETO DE ANÁLISIS - DATASET DE PELÍCULAS
+================================================================================
+
+[1/8] CARGANDO Y EXPLORANDO DATOS
+────────────────────────────────────────────────────────────────────────────
+✓ Dataset cargado: 9999 filas × 9 columnas
+✓ Estadísticas básicas calculadas
+
+[2/8] PRE-PROCESAMIENTO Y LIMPIEZA DE DATOS
+────────────────────────────────────────────────────────────────────────────
+✓ RATING: 165 outliers detectados
+✓ RunTime: 105 outliers detectados
+✓ Dataset limpio: 6526 filas (se eliminaron 3473)
+
+[3/8] EXPLORACIÓN GRÁFICA Y ANÁLISIS DE DISTRIBUCIONES
+────────────────────────────────────────────────────────────────────────────
+✓ Histogramas guardados
+✓ Medidas calculadas
+
+[4/8] INGENIERÍA DE CARACTERÍSTICAS
+────────────────────────────────────────────────────────────────────────────
+✓ 5 nuevas características creadas
+✓ Log aplicada a 2 columnas
+
+[5/8] TRANSFORMACIONES Y ESCALADO
+────────────────────────────────────────────────────────────────────────────
+✓ Escalado completado: 7 cols MinMax, 7 cols Standard
+
+[6/8] ANÁLISIS DE CORRELACIONES
+────────────────────────────────────────────────────────────────────────────
+✓ Matriz de correlación guardada
+Top correlaciones identificadas
+
+[7/8] ENTRENAMIENTO Y EVALUACIÓN DE MODELOS
+────────────────────────────────────────────────────────────────────────────
+  Linear Regression    - CV R²: 1.0000, Test R²: 1.0000
+  Ridge Regression     - CV R²: 1.0000, Test R²: 1.0000
+  ...
+✓ Mejor modelo guardado: Linear Regression (R² = 1.0000)
+
+[8/8] GENERANDO REPORTES Y VISUALIZACIONES
+────────────────────────────────────────────────────────────────────────────
+✓ Gráfico de comparación guardado
+✓ Gráfico de predicciones guardado
+✓ PCA guardado
+
+✅ PIPELINE COMPLETADO EXITOSAMENTE
+
+Todos los archivos han sido guardados en: .../outputs
+
+
+ARCHIVOS GENERADOS
+───────────────────
+
+7 PNG visualization files:
+  ✓ pipeline_histogramas.png
+  ✓ pipeline_matriz_correlación.png
+  ✓ pipeline_comparación_modelos.png
+  ✓ pipeline_predicciones_vs_reales.png
+  ✓ pipeline_pca.png
+
+2 Report files:
+  ✓ pipeline_reporte_completo.txt (126 líneas)
+  ✓ pipeline_resultados_modelos.csv
+
+1 Model file:
+  ✓ best_model_movies.joblib
+
+═══════════════════════════════════════════════════════════════════════════════
+
+7. TROUBLESHOOTING
+───────────────────────────────────────────────────────────────────────────────
+
+PROBLEMA: "ModuleNotFoundError: No module named 'kagglehub'"
+SOLUCIÓN:
+  pip install kagglehub
+  # Asegurarse de usar el venv correcto
+
+
+PROBLEMA: "FileNotFoundError: [...outputs/...]"
+SOLUCIÓN:
+  mkdir -p /Users/miguelmercado/Documents/7mo\ Semestre/FDAA/outputs
+  # Crear carpeta outputs si no existe
+
+
+PROBLEMA: "ValueError: Input X contains NaN"
+SOLUCIÓN:
+  # El pipeline ya maneja NaNs, pero verificar:
+  # - Que el CSV esté bien formateado
+  # - Que tenga las columnas esperadas
+
+
+PROBLEMA: El pipeline es muy lento
+SOLUCIÓN:
+  # Opción 1: Reducir tamaño del dataset
+  # Opción 2: Reducir número de modelos (comentar algunos)
+  # Opción 3: Usar dataset más pequeño
+  # Opción 4: Ejecutar en máquina con más recursos
+
+
+PROBLEMA: Gráficos no se generan
+SOLUCIÓN:
+  # Verificar que matplotlib está instalado:
+  pip install matplotlib seaborn plotly
+  # Verificar permisos de escritura en outputs/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+RESUMEN TECNOLÓGICO
+───────────────────────────────────────────────────────────────────────────────
+
+LENGUAJE:        Python 3.14.2
+ENTORNO:         Virtual Environment
+LIBRERÍAS CORE:
+  • pandas      → Manipulación de datos
+  • numpy       → Computacionales
+  • scikit-learn→ Machine Learning
+  • matplotlib  → Visualización estática
+  • seaborn     → Visualización avanzada
+  • scipy       → Estadística
+
+TÉCNICAS APLICADAS:
+  ✓ Análisis Exploratorio (EDA)
+  ✓ Pre-procesamiento de datos
+  ✓ Feature Engineering
+  ✓ Escalado numérico
+  ✓ Codificación categórica
+  ✓ Validación cruzada
+  ✓ Grid Search
+  ✓ Evaluación de modelos
+  ✓ Visualización de resultados
+
+COMPLEJIDAD COMPUTACIONAL:
+  • Carga datos:           O(n)
+  • Pre-procesamiento:     O(n log n)  [ordenamiento para outliers]
+  • Feature engineering:   O(n × m²)   [combinaciones]
+  • Grid Search:           O(k × m × n) [k modelos, m features, n muestras]
+  • Tiempo total:          ~2-5 minutos (dataset 10K rows)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+CONCLUSIÓN
+──────────────────────────────────────────────────────────────────────────────
+
+Este pipeline integra de forma metodológica y automatizada:
+
+✓ LECCIÓN 2  →  Machine Learning con múltiples algoritmos
+✓ LECCIÓN 3  →  Análisis avanzado y comparativas
+✓ LECCIÓN 4  →  Exploración gráfica y transformaciones
+
+Resultado:  Un flujo de trabajo completo, reproducible y documentado
+            que puede aplicarse a cualquier dataset numérico/categórico
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Última actualización: 2026-02-17
+Archivo: GUÍA_PIPELINE_COMPLETO.txt
+"""
