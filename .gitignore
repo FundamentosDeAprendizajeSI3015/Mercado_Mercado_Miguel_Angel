@@ -1,0 +1,32 @@
+# Entorno virtual
+.venv/
+venv/
+env/
+ENV/
+
+# Archivos del sistema
+.DS_Store
+*.pyc
+__pycache__/
+*.egg-info/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Archivos de caché
+.cache/
+*.cache
+
+# Logs
+*.log
+
+# Datos temporales
+.tmp/
+tmp/

@@ -1,0 +1,126 @@
+
+================================================================================
+PIPELINE COMPLETO DE ANÁLISIS - DATASET DE PELÍCULAS
+Generado: 2026-02-17 01:11:07
+================================================================================
+
+█ RESUMEN EJECUTIVO
+────────────────────────────────────────────────────────────────────────────────
+
+1. DATASET ORIGINAL
+   • Filas: 9999
+   • Columnas: 9
+   • Columnas numéricas: 2
+   • Columnas categóricas: 7
+   • Memoria: 6.50 MB
+
+2. PROCESAMIENTO DE DATOS
+   • Outliers detectados (IQR): 3473
+   • Filas después de limpieza: 6526
+   • Reducción: 34.7%
+
+3. FEATURE ENGINEERING
+   • Features originales: 9
+   • Features después de ingeniería: 14
+   • Features con transformación log: 2
+   • Features después de encodings: 7
+   • Features para modelado (escaladas): 7
+
+4. TRANSFORMACIONES APLICADAS
+   ✓ One Hot Encoding
+   ✓ Label Encoding
+   ✓ Min-Max Scaling
+   ✓ StandardScaler
+   ✓ Transformación Logarítmica
+   ✓ Feature Engineering (ratios, sumas, productos)
+
+5. ANÁLISIS DE CORRELACIÓN
+   • Total de pares de features: 21
+   • Correlaciones altas (|r| > 0.8): 7
+   • CORRELACION MÁXIMA: 0.9995
+     (RunTime ↔ RATING_plus_RunTime)
+
+6. MODELOS ENTRENADOS: 8
+   📊 MEJOR MODELO: Linear Regression
+   
+   Test R² Score: 1.0000
+   RMSE: 0.0000
+   MAE: 0.0000
+
+7. TOP 5 MODELOS POR RENDIMIENTO
+   1. Linear Regression         - R²:  1.0000, RMSE:   0.0000
+   2. Ridge Regression          - R²:  1.0000, RMSE:   0.0020
+   3. Decision Tree             - R²:  1.0000, RMSE:   0.0039
+   4. Gradient Boosting         - R²:  1.0000, RMSE:   0.0040
+   5. Random Forest             - R²:  1.0000, RMSE:   0.0060
+
+█ ESTADÍSTICAS DESCRIPTIVAS
+────────────────────────────────────────────────────────────────────────────────
+
+MEDIDAS DE TENDENCIA CENTRAL:
+           RATING    RunTime
+Media    6.937113  65.318112
+Mediana  7.100000  60.000000
+Moda     7.200000  24.000000
+
+MEDIDAS DE DISPERSIÓN:
+               Std          Var     CV (%)  Rango
+RATING    1.130977     1.279110  16.303285    6.0
+RunTime  34.468962  1188.109364  52.770910  180.0
+
+MEDIDAS DE POSICIÓN:
+           Q1    Q2    Q3   IQR
+RATING    6.2   7.1   7.8   1.6
+RunTime  35.0  60.0  94.0  59.0
+
+█ ARCHIVOS GENERADOS
+────────────────────────────────────────────────────────────────────────────────
+
+Visualizaciones:
+  ✓ pipeline_histogramas.png - Distribuciones de variables
+  ✓ pipeline_matriz_correlación.png - Matriz de correlaciones
+  ✓ pipeline_comparación_modelos.png - Rendimiento de modelos
+  ✓ pipeline_predicciones_vs_reales.png - Validación de predicciones
+  ✓ pipeline_pca.png - Reducción dimensional PCA
+
+Modelos:
+  ✓ best_model_movies.joblib - Mejor modelo entrenado
+
+█ CONCLUSIONES Y RECOMENDACIONES
+────────────────────────────────────────────────────────────────────────────────
+
+1. CALIDAD DE DATOS
+   • Se detectaron y eliminaron 3473 outliers (34.7%)
+   • El dataset limpio contiene 6526 muestras válidas
+   • No hay valores faltantes críticos
+
+2. CARACTERÍSTICAS RELEVANTES
+   • Se crearon 5 características derivadas
+   • Transformación logarítmica aplicada a 2 variables
+   • Feature engineering mejoró la predictibilidad
+
+3. PERFORMANCE DEL MODELO
+   • Mejor modelo: Linear Regression con R² = 1.0000
+   • Validación cruzada confirma consistencia (estabilidad en CV)
+   • El modelo explica 100.00% de la varianza
+
+4. RECOMENDACIONES FUTURAS
+   ✓ Considerar feature selection adicional (eliminar features colineales)
+   ✓ Explorar Hyperparameter Tuning avanzado (Bayesian Optimization)
+   ✓ Implementar ensemble methods combinando múltiples modelos
+   ✓ Análisis de importancia de features para mejor interpretabilidad
+   ✓ Validación temporal si los datos tienen componente temporal
+   ✓ Deployment del modelo con monitoreo en producción
+
+█ NOTAS TÉCNICAS
+────────────────────────────────────────────────────────────────────────────────
+
+• Validación cruzada: 5-fold stratified
+• Split entrenamiento-prueba: 80-20
+• Escalado: StandardScaler para rendimiento óptimo
+• Encoding: One-Hot + Label para variables categóricas
+• Tratamiento de outliers: IQR (1.5 × IQR)
+
+================================================================================
+FIN DEL PIPELINE
+================================================================================

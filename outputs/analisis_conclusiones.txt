@@ -1,0 +1,63 @@
+
+RESUMEN DE ANÁLISIS DEL DATASET DE PELÍCULAS
+
+█ ESTRUCTURA DEL DATASET:
+  • Total de filas originales: 9999
+  • Total de filas después de limpiar (sin outliers): 6526
+  • Total de columnas numéricas: 2
+  • Total de columnas categóricas: 7
+  • Filas eliminadas por outliers: 3473 (34.7%)
+
+█ MEDIDAS DE TENDENCIA CENTRAL:
+  • Se calcularon Media, Mediana y Moda para todas las columnas numéricas
+  • La variabilidad entre estas medidas indica la simetría de las distribuciones
+  • Distribuciones asimétricas pueden beneficiarse de transformaciones logarítmicas
+
+█ MEDIDAS DE DISPERSIÓN:
+  • Se identificó la variabilidad de cada columna mediante desviación estándar y varianza
+  • El coeficiente de variación permite comparar la dispersión relativa entre columnas
+  • Columnas con alto CV pueden requerir normalización
+
+█ DETECCIÓN Y TRATAMIENTO DE OUTLIERS:
+  • Se utilizó el método de Rango Intercuartílico (IQR) para identificar outliers
+  • Se eliminaron 3473 outliers del dataset
+  • Los outliers pueden representar casos anormales o errores de medición
+
+█ DISTRIBUCIONES (HISTOGRAMAS):
+  • Se generaron histogramas para visualizar la forma de cada distribución
+  • Análisis de Asimetría (Skewness): indica sesgo hacia izquierda/derecha
+  • Análisis de Curtosis: indica concentración en las colas vs. pico central
+  • La transformación logarítmica se aplicó a 2 columnas con distribuciones sesgadas
+
+█ RELACIONES ENTRE VARIABLES (GRÁFICOS DE DISPERSIÓN):
+  • Se analizaron 4 pares de variables para identificar relaciones lineales
+  • Se calcularon coeficientes de correlación entre variables
+  • Se trazaron líneas de tendencia para visualizar relaciones
+
+█ CORRELACIÓN ENTRE COLUMNAS:
+  • Total de columnas analizadas: 2
+  • Pares altamente correlacionados (|r| > 0.8): 0
+  • Las columnas altamente correlacionadas pueden ser redundantes
+  • Considera eliminar una de cada par con alta correlación
+
+█ TRANSFORMACIONES REALIZADAS:
+  • One Hot Encoding: Conversión de variables categóricas a binarias
+  • Label Encoding: Asignación de números a categorías
+  • Min-Max Scaling: Escalado de valores al rango [0, 1]
+  • StandardScaler: Normalización con media 0 y desviación estándar 1
+  • Transformación Logarítmica: Aplicada a 2 columnas para mejorar simetría
+
+█ RECOMENDACIONES:
+  1. Usar StandardScaler para algoritmos como KNN, SVM y Regresión Lineal
+  2. Usar Min-Max Scaling para redes neuronales y algoritmos basados en distancia
+  3. Eliminar columnas con correlación > 0.95 para evitar multicolinealidad
+  4. Para datos categóricos con muchas categorías, considerar target encoding
+  5. Explorar interacciones entre variables importantes
+  6. Considerar feature engineering para mejorar predictibilidad
+
+█ PRÓXIMOS PASOS:
+  1. Seleccionar características relevantes basadas en análisis de correlación
+  2. Dividir datos en entrenamiento y prueba
+  3. Aplicar transformaciones elegidas consistentemente a ambos conjuntos
+  4. Validar normalidad de distribuciones post-transformación
+  5. Entrenar modelos con diferentes combinaciones de features
