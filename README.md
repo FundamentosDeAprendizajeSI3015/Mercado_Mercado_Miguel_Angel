@@ -56,7 +56,6 @@ python Lect4/lect4.py
 python Lect4/movies_complete_pipeline.py
 ```
 
-You can also use the convenience script `run_pipeline.sh` if present.
 
 ## Notes on dataset location
 - The movies dataset was downloaded using `kagglehub` and cached under the user cache path (e.g., `~/.cache/kagglehub/...`). `Lect4/` scripts attempt to read `movies.csv` from the local cache or the working directory. If the pipeline cannot find the data, download the dataset manually (or run `Lect4/lect4.py` to fetch it) and place `movies.csv` in the project root or update the script path.
@@ -79,13 +78,3 @@ You can also use the convenience script `run_pipeline.sh` if present.
 - `Informe1/README.md` — project-specific report and guidance (already created).
 - `outputs/` — inspect artifacts produced by running the scripts.
 
----
-
-If you want, I will now:
-- (A) Replace this file as the top-level `README.md` (already created),
-- (B) Generate a `requirements.txt` from your venv, or
-- (C) Run a leakage/feature-audit pass on `Lect4/movies_complete_pipeline.py` and produce a short remediation patch.
-
-Tell me which option to do next (A / B / C) and I will proceed.
-
-*Generated on: February 17, 2026*
