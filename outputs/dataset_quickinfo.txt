@@ -1,0 +1,29 @@
+None
+
+Nulos por columna:
+MOVIES         0
+YEAR         644
+GENRE         80
+RATING      1820
+ONE-LINE       0
+STARS          0
+VOTES       1820
+RunTime     2958
+Gross       9539
+dtype: int64
+
+Descripción numérica:
+                  MOVIES  ...   Gross
+count               9999  ...     460
+unique              6817  ...     332
+top      Bleach: Burîchi  ...  $0.01M
+freq                  65  ...      22
+mean                 NaN  ...     NaN
+std                  NaN  ...     NaN
+min                  NaN  ...     NaN
+25%                  NaN  ...     NaN
+50%                  NaN  ...     NaN
+75%                  NaN  ...     NaN
+max                  NaN  ...     NaN
+
+[11 rows x 9 columns]
