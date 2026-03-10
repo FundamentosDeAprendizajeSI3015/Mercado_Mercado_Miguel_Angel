@@ -71,6 +71,33 @@ for col in ["liquidez", "dias_efectivo", "cfo"]:
         plt.savefig(f"eda_hist_{col}.png", dpi=300)
         plt.close()
 
+# distribuciones por etiqueta: violin, box y strip/swarm
+for col in ["liquidez", "dias_efectivo", "cfo"]:
+    if col in df.columns:
+        # violin
+        plt.figure(figsize=(6, 4))
+        sns.violinplot(x=target_col, y=col, data=df, palette="Set2")
+        plt.title(f"Violin plot de {col} por label")
+        plt.savefig(f"eda_violin_{col}.png", dpi=300)
+        plt.close()
+        # box
+        plt.figure(figsize=(6, 4))
+        sns.boxplot(x=target_col, y=col, data=df, palette="Set1")
+        plt.title(f"Box plot de {col} por label")
+        plt.savefig(f"eda_box_{col}.png", dpi=300)
+        plt.close()
+        # strip/swarm
+        plt.figure(figsize=(6, 4))
+        sns.stripplot(x=target_col, y=col, data=df, color="black", alpha=0.5)
+        plt.title(f"Strip plot de {col} por label")
+        plt.savefig(f"eda_strip_{col}.png", dpi=300)
+        plt.close()
+        plt.figure(figsize=(6, 4))
+        sns.swarmplot(x=target_col, y=col, data=df, palette="pastel")
+        plt.title(f"Swarm plot de {col} por label")
+        plt.savefig(f"eda_swarm_{col}.png", dpi=300)
+        plt.close()
+
 # Matriz de correlación de variables numéricas
 num_cols_eda = df.select_dtypes(include=[np.number]).columns.tolist()
 corr = df[num_cols_eda].corr()
@@ -152,7 +179,8 @@ cm_gb = confusion_matrix(y_test, y_pred_gb)
 disp_gb = ConfusionMatrixDisplay(cm_gb)
 disp_gb.plot()
 plt.title("Matriz de confusión - Gradient Boosting")
-plt.show()
+plt.savefig("cm_gradient_boosting.png", dpi=300)
+plt.close()
 
 # 2) Random Forest como modelo base fuerte
 pipe_rf.fit(X_train, y_train)
@@ -168,7 +196,8 @@ cm_rf = confusion_matrix(y_test, y_pred_rf)
 disp_rf = ConfusionMatrixDisplay(cm_rf)
 disp_rf.plot()
 plt.title("Matriz de confusión - Random Forest")
-plt.show()
+plt.savefig("cm_random_forest.png", dpi=300)
+plt.close()
 
 # 3) Importancia de variables del Random Forest
 
@@ -238,4 +267,56 @@ sns.scatterplot(
 plt.title("PCA 2D del espacio de características (coloreado por label)")
 plt.tight_layout()
 plt.savefig("pca_fire_udea.png", dpi=300)
+plt.close()
+
+# ------- curvas comparativas y calibración -------
+from sklearn.metrics import roc_curve, precision_recall_curve, auc
+from sklearn.calibration import calibration_curve
+
+# ROC comparativa
+fpr_gb, tpr_gb, _ = roc_curve(y_test, y_proba_gb)
+fpr_rf, tpr_rf, _ = roc_curve(y_test, y_proba_rf)
+roc_auc_gb = auc(fpr_gb, tpr_gb)
+roc_auc_rf = auc(fpr_rf, tpr_rf)
+plt.figure(figsize=(6, 5))
+plt.plot(fpr_gb, tpr_gb, label=f"GB (AUC={roc_auc_gb:.2f})")
+plt.plot(fpr_rf, tpr_rf, label=f"RF (AUC={roc_auc_rf:.2f})")
+plt.plot([0, 1], [0, 1], "k--", alpha=0.5)
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+plt.title("Curva ROC comparativa")
+plt.legend(loc="lower right")
+plt.tight_layout()
+plt.savefig("roc_comparativa.png", dpi=300)
+plt.close()
+
+# Precision-Recall comparativa
+prec_gb, rec_gb, _ = precision_recall_curve(y_test, y_proba_gb)
+prec_rf, rec_rf, _ = precision_recall_curve(y_test, y_proba_rf)
+pr_auc_gb = auc(rec_gb, prec_gb)
+pr_auc_rf = auc(rec_rf, prec_rf)
+plt.figure(figsize=(6, 5))
+plt.plot(rec_gb, prec_gb, label=f"GB (AUC={pr_auc_gb:.2f})")
+plt.plot(rec_rf, prec_rf, label=f"RF (AUC={pr_auc_rf:.2f})")
+plt.xlabel("Recall")
+plt.ylabel("Precision")
+plt.title("Curva Precision-Recall comparativa")
+plt.legend(loc="upper right")
+plt.tight_layout()
+plt.savefig("pr_comparativa.png", dpi=300)
+plt.close()
+
+# Calibration plot
+prob_true_gb, prob_pred_gb = calibration_curve(y_test, y_proba_gb, n_bins=10)
+prob_true_rf, prob_pred_rf = calibration_curve(y_test, y_proba_rf, n_bins=10)
+plt.figure(figsize=(6, 5))
+plt.plot(prob_pred_gb, prob_true_gb, "s-", label="GB")
+plt.plot(prob_pred_rf, prob_true_rf, "s-", label="RF")
+plt.plot([0, 1], [0, 1], "k--", alpha=0.5)
+plt.xlabel("Predicted probability")
+plt.ylabel("Observed frequency")
+plt.title("Calibration plot")
+plt.legend()
+plt.tight_layout()
+plt.savefig("calibration_plot.png", dpi=300)
 plt.close()
