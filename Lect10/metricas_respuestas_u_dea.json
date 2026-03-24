@@ -1,0 +1,33 @@
+{
+  "total_l1":277,
+  "class1_in_l1":112,
+  "class2_in_l1":165,
+  "p_class1_in_l1":40.43,
+  "p_class2_in_l1":59.57,
+  "suspected_n":305,
+  "suspected_core":305,
+  "suspected_border":0,
+  "suspected_outliers":0,
+  "suspected_core_pct":100.0,
+  "suspected_border_pct":0.0,
+  "suspected_outliers_pct":0.0,
+  "pca2_explained_pct":32.86,
+  "visual_dir":"\/Users\/miguelmercado\/Documents\/7mo Semestre\/FDAA\/Lect10\/visualizaciones_u_dea"
+}
+
+# Este archivo JSON contiene métricas relacionadas con las respuestas de un modelo de detección de anomalías (DEA) aplicado a un conjunto de datos. 
+# A continuación se describen las métricas presentes en el archivo:
+# - "total_l1": El número total de instancias clasificadas como clase 1 (anomalías) por el modelo.
+# - "class1_in_l1": El número de instancias de clase 1 que fueron clasificadas correctamente como clase 1.
+# - "class2_in_l1": El número de instancias de clase 2 (normal) que fueron clasificadas incorrectamente como clase 1.
+# - "p_class1_in_l1": El porcentaje de instancias de clase 1 que fueron clasificadas correctamente como clase 1.
+# - "p_class2_in_l1": El porcentaje de instancias de clase 2 que fueron clasificadas incorrectamente como clase 1.
+# - "suspected_n": El número total de instancias sospechosas identificadas por el modelo.
+# - "suspected_core": El número de instancias sospechosas clasificadas como núcleos (core).
+# - "suspected_border": El número de instancias sospechosas clasific  adas como bordes (border).
+# - "suspected_outliers": El número de instancias sospechosas clasificadas como outliers.
+# - "suspected_core_pct": El porcentaje de instancias sospechosas clasificadas como núcleos.
+# - "suspected_border_pct": El porcentaje de instancias sospechosas clasificadas como bordes.
+# - "suspected_outliers_pct": El porcentaje de instancias sospechosas clasificadas como outliers.
+# - "pca2_explained_pct": El porcentaje de varianza explicada por las dos primeras componentes principales en un análisis de componentes principales (PCA).
+# - "visual_dir": La ruta del directorio donde se almacenan las visualizaciones relacionadas con el análisis de detección de anomalías.
