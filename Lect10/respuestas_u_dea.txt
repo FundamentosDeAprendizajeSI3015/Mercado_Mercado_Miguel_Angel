@@ -1,0 +1,53 @@
+RESPUESTAS - ANÁLISIS DATASET UdeA (dataset_sintetico_FIRE_UdeA Lect9 copy)
+Fecha: 2026-03-24
+
+NOTA METODOLÓGICA IMPORTANTE:
+En este dataset no existe una columna explícita de "clase real" (ground truth) separada de "label".
+Por eso, para estimar "realmente clase 1 vs clase 2", usé una aproximación de clases latentes con GMM (2 clusters)
+y luego mapeé a Clase 1/Clase 2 con criterio financiero (liquidez, CFO y días de efectivo).
+
+1) ¿Cuántos de los datos etiquetados como 1 son realmente clase 1 y cuántos clase 2?
+- Total de puntos con label = 1: 277
+- Estimados como Clase 1 real: 112 puntos = 40.43%
+- Estimados como Clase 2 real: 165 puntos = 59.57%
+
+Interpretación directa:
+- De los puntos marcados como 1 por los analistas, aproximadamente 4 de cada 10 sí caerían en Clase 1,
+  pero casi 6 de cada 10 parecen pertenecer más a Clase 2 (según estructura latente del dataset).
+
+2) ¿Por qué quedaron mal etiquetados? ¿No core? ¿Outliers?
+Hallazgo clave:
+- Puntos sospechosos de mala etiqueta (proxy): 305
+- De esos sospechosos:
+  - Core points: 305 (100.0%)
+  - Border points: 0 (0.0%)
+  - Outliers: 0 (0.0%)
+
+Conclusión técnica:
+- No parece un problema de outliers aislados ni de puntos de borde.
+- Parece más un problema de frontera de decisión/criterio de etiquetado (error sistemático humano o reglas inconsistentes),
+  porque los puntos "problemáticos" están en zonas densas (core) del espacio de datos.
+
+3) Visualizaciones y recomendación ejecutiva (ascender o despedir)
+Visualizaciones generadas (alta calidad) en:
+- Lect10/visualizaciones_u_dea/01_pca2d_clase_latente.png
+- Lect10/visualizaciones_u_dea/02_pca3d_clases.png
+- Lect10/visualizaciones_u_dea/03_tsne_sospechosos.png
+- Lect10/visualizaciones_u_dea/04_pairplot_variables_clave.png
+
+Qué muestran estas visualizaciones:
+- PCA 2D: separación parcial de grupos y superposición relevante entre etiquetas y estructura latente.
+- PCA 3D: mejora la percepción de separación, pero aún con mezcla en ciertas regiones.
+- t-SNE: aparecen zonas compactas donde varios puntos etiquetados no siguen el patrón dominante del vecindario.
+- Pairplot: cruces entre liquidez/CFO/días de efectivo evidencian límites no lineales difíciles de etiquetar "a ojo".
+
+Recomendación (honesta y accionable):
+- No despedir al equipo por estos resultados.
+- Tampoco ascender por desempeño de etiquetado actual.
+- Recomendación equilibrada: plan de mejora en 3 pasos:
+  1) Definir una guía formal de etiquetado (rubrica cuantitativa).
+  2) Doble revisión ciega para casos ambiguos.
+  3) Auditoría mensual con muestra estratificada y métrica de acuerdo (Cohen Kappa).
+
+Resumen ejecutivo en una línea:
+- El problema parece de proceso de etiquetado (consistencia), no de "casos raros"; mejora de gobernanza de datos antes de decisiones de RRHH extremas.
